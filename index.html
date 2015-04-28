@@ -15,7 +15,7 @@
         
         var runQuery = function (eventName){
           var property = "UserID";
-          var dateRange = dateSelect.MPDatepicker('value');
+          var dateRange = dateSelector.MPDatepicker('value');
           var segmentationData = runSegmentationQuery(eventName, property, dateRange);
           console.log(segmentationData);
           
