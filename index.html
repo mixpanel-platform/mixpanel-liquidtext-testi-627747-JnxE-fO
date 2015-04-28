@@ -8,7 +8,7 @@
   </head>
   <body class="mixpanel-platform-body">
      <div id = "datePicker"></div>
-     <div id="eventSelect" style="float: right;"></div>
+     <div id="eventSelect"></div>
     <script>
       var dateSelector = $('#datePicker').MPDatepicker();
       var eventSelect = $('#eventSelect').MPEventSelect();
@@ -23,7 +23,7 @@
         
 
       
-        evemtSelect.on('change', function(e, eventName) {
+        eventSelect.on('change', function(e, eventName) {
           runQuery(eventName);
         });
         
