@@ -41,8 +41,7 @@
         var aggregateSegmentationData = function (segmentationResults){
           var finalEventData = {};
           var length = Object.keys(segmentationResults).length;
-          for (var i = 0; i < length; i++){
-            var userID = Object.keys[i];
+          for (var userID in segmentationResults){
             console.log(userID);
           }
         }
