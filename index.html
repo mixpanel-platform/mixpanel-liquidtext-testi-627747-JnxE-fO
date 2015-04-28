@@ -14,9 +14,9 @@
       var eventSelect = $('#eventSelect').MPEventSelect();
         
         var runQuery = function (){
-          var segmentationData = runSegmentationQuery().done(function (segmentationData){
-            var totalEventData = aggregateSegmentationData(segmentationData);
-          });
+          var segmentationData = runSegmentationQuery();
+          var totalEventData = aggregateSegmentationData(segmentationData);
+          };
           
           
 
