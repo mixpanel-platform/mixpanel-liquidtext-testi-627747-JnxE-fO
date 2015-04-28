@@ -14,7 +14,10 @@
       var eventSelect = $('#eventSelect').MPEventSelect();
         
         var runQuery = function (){
-          var segmentationData = runSegmentationQuery();
+          var segmentationData = runSegmentationQuery().done(function (segmentationData){
+            var totalEventData = aggregateSegmentationData(segmentationData);
+          });
+          
           
 
         }
@@ -32,9 +35,19 @@
           var dateRange = dateSelector.MPDatepicker('value');
           console.log(dateRange);
           var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-            console.log(results.values());
-            return results.values();
+            var segmentationResults = results.values();
+            console.log(segmentationResults);
+            return segmentationResults;
           })
+        }
+        
+        var aggregateSegmentationData = function (segmentationResults){
+          var finalEventData = {};
+          var length = Object.keys(segementationResults).length;
+          for (var i = 0; i < length; i++){
+            var userID = Object.keys[i];
+            console.log(userID);
+          }
         }
     </script>
   </body>
