@@ -28,7 +28,7 @@
         });
         
         var runSegmentationQuery = function (eventName, property, dateRange){
-          var segmentationData = MP.api.segment(event, property, params).done(function(results){
+          var segmentationData = MP.api.segment(event, property, dateRange).done(function(results){
             return results;
           })
         }
