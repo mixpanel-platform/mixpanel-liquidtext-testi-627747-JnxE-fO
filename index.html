@@ -34,14 +34,13 @@
           var dateRange = dateSelector.MPDatepicker('value');
           console.log(dateRange);
           var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-            var segmentationResults = results.values();
-            var totalData = aggregateSegmentationData(segmentationResults);
+            var totalData = aggregateSegmentationData(results.values());
           })
         }
         
         var aggregateSegmentationData = function (segmentationResults){
           var finalEventData = {};
-          var length = Object.keys(segementationResults).length;
+          var length = Object.keys(segmentationResults).length;
           for (var i = 0; i < length; i++){
             var userID = Object.keys[i];
             console.log(userID);
