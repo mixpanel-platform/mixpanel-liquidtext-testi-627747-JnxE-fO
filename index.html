@@ -42,9 +42,9 @@
           var length = Object.keys(segmentationResults).length;
           for (var userID in segmentationResults){
             for (var date in segmentationResults[userID]){
-              finalEventData[userID] += segmentationResults[userID][date]);
+              finalEventData[userID] += segmentationResults[userID][date];
             }
-            
+
           }
           console.log(finalEventData);
         }
