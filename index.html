@@ -26,8 +26,8 @@
         
         var runSegmentationQuery = function (event, dateRange){
           var params = {
-            from: dateRange.from
-            to: dateRange.to
+            from_date: dateRange.from
+            to_date: dateRange.to
             on: "UserID"
           }
           var segmentationData = MP.api.segment(event, params).done(function(results){
