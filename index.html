@@ -7,9 +7,34 @@
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
+     <div id = "datePicker"></div>
     <script>
-      // Run queries and display results here
+        
+        var runQuery = function (dateRange){
+          var event = "app.app-launch"
+          var segmentationData = runSegmentationQuery(event, dateRange);
+          console.log(segmentationData);
+          
+        }
+        
+        
+        
+        var dateSelector = $('#datePicker').MPDatepicker();
+        dateSelector.on('change', function(e, dateRange) {
+          runQuery(dateRange);
+        });
+        
+        var runSegmentationQuery = function (event, dateRange){
+          var params = {
+            from: dateRange.from();
+            to: dateRange.to();
+            on: "UserID"
+          }
+          var segmentationData = MP.api.segment(event, params).done(function(results){
+            return results;
+            
+          })
+        }
     </script>
   </body>
 </html>
