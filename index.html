@@ -45,8 +45,9 @@
             for (var date in segmentationResults[userID]){
               finalEventData[userID] += segmentationResults[userID][date];
             }
-
+            
           }
+          console.log(finalEventData);
           var sortedData = sortFinalEventData(finalEventData);
         }
         
