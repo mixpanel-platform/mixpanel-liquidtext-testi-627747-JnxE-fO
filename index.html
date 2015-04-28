@@ -11,8 +11,9 @@
     <script>
         
         var runQuery = function (dateRange){
-          var event = "app.app-launch"
-          var segmentationData = runSegmentationQuery(event, dateRange);
+          var event = "app.app-launch";
+          var property = "UserID";
+          var segmentationData = runSegmentationQuery(event, property, dateRange);
           console.log(segmentationData);
           
         }
@@ -28,11 +29,9 @@
           var params = {
             from_date: dateRange.from
             to_date: dateRange.to
-            on: "UserID"
           }
-          var segmentationData = MP.api.segment(event, params).done(function(results){
+          var segmentationData = MP.api.segment(event, property, params).done(function(results){
             return results;
-            
           })
         }
     </script>
