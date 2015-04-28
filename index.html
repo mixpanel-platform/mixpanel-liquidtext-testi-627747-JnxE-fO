@@ -32,8 +32,8 @@
           var property = "UserID";
           var dateRange = dateSelector.MPDatepicker('value');
           var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-            var totalData = aggregateSegmentationData(results.values()).done(function (results){
-                var sortedData = sortFinalEventData(results);
+            var totalData = aggregateSegmentationData(results.values()).done(function (eventData){
+                var sortedData = sortFinalEventData(eventData);
             })
           })
         }
