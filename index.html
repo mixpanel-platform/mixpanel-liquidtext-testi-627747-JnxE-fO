@@ -8,28 +8,27 @@
   </head>
   <body class="mixpanel-platform-body">
      <div id = "datePicker"></div>
+     <div id="eventSelect" style="float: right;"></div>
     <script>
+      var dateSelector = $('#datePicker').MPDatepicker();
+      var eventSelect = $('#eventSelect').MPEventSelect();
         
-        var runQuery = function (dateRange){
+        var runQuery = function (eventName){
           var event = "app.app-launch";
           var property = "UserID";
-          var segmentationData = runSegmentationQuery(event, property, dateRange);
+          var dateRange = dateSelect.MPDatepicker('value');
+          var segmentationData = runSegmentationQuery(eventName, property, dateRange);
           console.log(segmentationData);
           
         }
         
-        
-        
-        var dateSelector = $('#datePicker').MPDatepicker();
-        dateSelector.on('change', function(e, dateRange) {
-          runQuery(dateRange);
+
+      
+        evemtSelect.on('change', function(e, eventName) {
+          runQuery(eventName);
         });
         
-        var runSegmentationQuery = function (event, property, dateRange){
-          var params = {
-            from_date: dateRange.from,
-            to_date: dateRange.to
-          }
+        var runSegmentationQuery = function (eventName, property, dateRange){
           var segmentationData = MP.api.segment(event, property, params).done(function(results){
             return results;
           })
