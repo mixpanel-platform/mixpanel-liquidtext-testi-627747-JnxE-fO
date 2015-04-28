@@ -52,7 +52,7 @@
         
         var sortFinalEventData = function (finalEventData){
           var sortedFinalData = {};
-          var length = Object.keys(sortedFinalData).length;
+          var length = Object.keys(finalEventData).length;
           for (var i = 0; i < length; i++){
             var max_user = _.max(finalEventData);
             sortedFinalData[max_user] = finalEventData[max_user];
