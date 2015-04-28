@@ -32,7 +32,7 @@
           var dateRange = dateSelector.MPDatepicker('value');
           console.log(dateRange);
           var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-            console.log(segmentationData);
+            console.log(results.values());
             return results.values();
           })
         }
