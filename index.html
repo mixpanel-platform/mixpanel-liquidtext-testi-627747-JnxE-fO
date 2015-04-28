@@ -14,6 +14,7 @@
       var eventSelect = $('#eventSelect').MPEventSelect();
         
         var runQuery = function (eventName){
+          var eventName = eventSelect.MPEventSelect('value')
           var property = "UserID";
           var dateRange = dateSelector.MPDatepicker('value');
           var segmentationData = runSegmentationQuery(eventName, property, dateRange);
@@ -23,12 +24,12 @@
         
 
       
-        eventSelect.on('change', function(e, eventName) {
+        eventSelect.on('change', function(e) {
           runQuery(eventName);
         });
         
         var runSegmentationQuery = function (eventName, property, dateRange){
-          var segmentationData = MP.api.segment(event, property, dateRange).done(function(results){
+          var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
             return results;
           })
         }
