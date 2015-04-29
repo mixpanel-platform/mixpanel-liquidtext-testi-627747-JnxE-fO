@@ -17,7 +17,7 @@
         var segmentationPromises = [];
         
         var segmentationInitialPromise = new Promise(function (resolve, reject){
-          var segmentationSortedData = runSegmentationQuery().done(function(results){
+          runSegmentationQuery().done(function(results){
             resolve(results);
           })
         });
