@@ -11,12 +11,16 @@
 		<h1><font size="18">LiquidText!</font></h1>
 
 		<div id="datePicker"></div>
+		
 		<br><br>
 		<div id="eventSelect"></div>
+		<div id = "barChart"> <table style="width:100%"></table></div>
 
 		<script>
 
-		
+		 var barchart = $('#barChart').MPChart({
+        chartType: 'bar' 
+       });
 		var dateSelector = $('#datePicker').MPDatepicker();
     var eventSelect = $('#eventSelect').MPEventSelect();
     
@@ -79,7 +83,7 @@
           })
           
           sortedDataPromise.then(function(sortedData){
-            console.log(sortedData);
+            barchart.MPChart('setData', sortedData);
           })
           
       	})
