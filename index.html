@@ -16,10 +16,10 @@
 
 		<script>
 
-		MP.api.setCredentials("5d1f709fdb632188671c5497e18fc5f9", "3fc000e5c15892b0d67fe459c314e55e")
+		
 		var dateSelector = $('#datePicker').MPDatepicker();
-      	var eventSelect = $('#eventSelect').MPEventSelect();
-
+    var eventSelect = $('#eventSelect').MPEventSelect();
+    
       	var segObject
       	var chartData = {}
 
@@ -67,6 +67,7 @@
           var length = Object.keys(chartData).length;
           for (var i = 0; i > length; i++){
              var max_user = chartData[_.max(chartData)]
+             console.log(max_user);
              sortedFinalData[max_user] = chartData[max_user];
              delete chartData[max_user];
            }
