@@ -82,7 +82,7 @@
             sortedPromise.push(sortedDataPromise);
           });
           
-          Promise.all(sortedPromise)(function(sortedData){
+          Promise.all(sortedPromise).then(function(sortedData){
             barchart.MPChart('setData', sortedData);
           })
           
