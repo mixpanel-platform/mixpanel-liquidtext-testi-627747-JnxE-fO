@@ -18,7 +18,7 @@
         var segmentationSortedPromise = [];
         segmentationInitialPromise.push(runSegmentationQuery());
         Promise.all(segmentationInitialPromise).then(function(promiseArray){
-          console.log(segmentationInitialPromise);
+          console.log(promiseArray);
         //   segmentationSortedPromise.push(sortedFinalEventData(promiseArray));
           
         // });
@@ -43,10 +43,8 @@
           var property = "UserID";
           var dateRange = dateSelector.MPDatepicker('value');
           var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-            var totalData = aggregateSegmentationData(results.values());
-            console.log("this is total data");
-            console.log(totalData);
-            return totalData; 
+            return aggregateSegmentationData(results.values());
+            
           })
            
         }
@@ -62,7 +60,7 @@
             }
             
           }
-          
+          return finalEventData;
           
         }
         
