@@ -70,9 +70,9 @@
             for (var i = 0; i < length; i++){
               var maxAmount = _.max(chartData);
               var maxUser = _.invert(chartData)[_.max(chartData)]
-              console.log(max_user);
-              sortedFinalData[max_user] = chartData[max_user];
-              delete chartData[max_user];
+              console.log(maxUser);
+              sortedFinalData[maxUser] = chartData[maxUser];
+              delete chartData[maxUser];
             }
           })
           sortedDataPromise.then(function(sortedData){
