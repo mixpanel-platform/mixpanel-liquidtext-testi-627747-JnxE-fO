@@ -16,8 +16,8 @@
         var property = "UserID";
         var dateRange = dateSelector.MPDatepicker('value');
         var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-          console.log(segmentationData);
-          return segmentationData;
+          console.log(results.values());
+          return results.values();
         });
       }
     
