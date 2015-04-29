@@ -53,8 +53,6 @@
       			
       		}
 
-      		// console.log(peoplePromises)
-
       	Promise.all(peoplePromises).then(function(peopleData) {
 
       		for (var user in peopleData) {
@@ -64,6 +62,7 @@
       			chartData[firstName] = segObject[distinctId]
 
       		}
+      		
           var sortedFinalData = {};
           var length = Object.keys(chartData).length;
           for (var i = 0; i > length; i++){
