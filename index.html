@@ -83,7 +83,8 @@
           });
           
           Promise.all(sortedPromise).then(function(sortedData){
-            barchart.MPChart('setData', sortedData);
+            console.log(sortedData);
+            //barchart.MPChart('setData', sortedData);
           })
           
       	})
