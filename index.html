@@ -86,7 +86,11 @@
           Promise.all(sortedPromise).then(function(sortedData){
             console.log(sortedData);
             console.log(sortedData[0]["Unknown 2AECFCF5-8EAF-4F34-84ED-8DF011ABACBE"]);
-            barchart.MPChart('setData', sortedData[0]["Unknown 2AECFCF5-8EAF-4F34-84ED-8DF011ABACBE"]);
+            var finalArray = {};
+            for (var key in sortedData[0]){
+              finalArray[key] = sortedData[0][key];
+            }
+            barchart.MPChart('setData', finalArray);
           })
           
       	})
