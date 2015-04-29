@@ -68,8 +68,8 @@
       		}
       		
           console.log(chartData);
+          var sortedFinalData = [];
           var sortedDataPromise = new Promise(function (resolve, reject){
-            var sortedFinalData = [];
             var length = Object.keys(chartData).length;
             for (var i = 0; i < length; i++){
               var maxAmount = _.max(chartData);
