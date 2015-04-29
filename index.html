@@ -29,7 +29,7 @@
 
       	var segProperty = "UserID";
       	var dateRange = dateSelector.MPDatepicker('value')
-      	var eventName = "app.app-launch"
+      	var eventName = eventSelect.MPEventSelect('value')
 
       	var getSegData = new Promise(function(resolve, reject) {
       		MP.api.segment(eventName, segProperty, dateRange).done(function(segData) {
