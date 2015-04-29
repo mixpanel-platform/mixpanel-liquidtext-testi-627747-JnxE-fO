@@ -85,7 +85,7 @@
           sortedPromise.push(sortedDataPromise);
           Promise.all(sortedPromise).then(function(sortedData){
             console.log(sortedData);
-            barchart.MPChart('setData', sortedData);
+            barchart.MPChart('setData', sortedData[0]);
           })
           
       	})
