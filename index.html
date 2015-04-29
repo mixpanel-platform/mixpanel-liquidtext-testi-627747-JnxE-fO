@@ -68,7 +68,7 @@
             var length = Object.keys(chartData).length;
             for (var i = 0; i < length; i++){
               var maxAmount = _.max(chartData);
-              var max_user = _.invert(chartData[maxAmount]);
+              var max_user = _.findKey(chartData, maxAmount);
               console.log(max_user);
               sortedFinalData[max_user] = chartData[max_user];
               delete chartData[max_user];
