@@ -17,10 +17,11 @@
         var segmentationPromises = [];
         
         var segmentationInitialPromise = new Promise(function (resolve, reject){
-          var segmentationSortedData = runSegmentationQuery.done(function(results){
+          var segmentationSortedData = runSegmentationQuery().done(function(results){
             resolve(results);
           })
         });
+      
         
         segmentationPromises.push(segmentationInitialPromise);
         console.log(segmentationInitialPromise);
