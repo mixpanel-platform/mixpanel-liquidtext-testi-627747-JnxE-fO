@@ -14,7 +14,7 @@
       var eventSelect = $('#eventSelect').MPEventSelect();
         
       var runQuery = function (){
-        var promises = [];
+        var segmentationPromises = [];
         
         var segmentationInitialPromise = new Promise(function (resolve, reject){
           var segmentationSortedData = runSegmentationQuery().done(function(results){
@@ -22,17 +22,23 @@
           })
         });
         
-        segmentationInitialPromise.push(runSegmentationQuery());
-        Promise.all(segmentationInitialPromise).then(function(promiseArray){
-          console.log(promiseArray);
+        segmentationPromises.push(segmentationInitialPromise);
+        console.log(segmentationInitialPromise);
+        Promise.all(segmentationPromises).then(function(segmentationData){
+          console.log(segmentationData);
+        })
+        
+        //segmentationInitialPromise.push(runSegmentationQuery());
+        //Promise.all(segmentationInitialPromise).then(function(promiseArray){
+          //console.log(promiseArray);
         //   segmentationSortedPromise.push(sortedFinalEventData(promiseArray));
           
         // });
       
         
-      })
+      }
       // .then(function())
-    }
+    
           
           
 
