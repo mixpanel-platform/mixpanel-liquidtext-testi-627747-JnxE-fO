@@ -16,9 +16,7 @@
         var dateRange = dateSelector.MPDatepicker('value');
         var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
           console.log(segmentationData);
-          return segmentationData;
         })
-           
       }
         
      
@@ -27,14 +25,11 @@
         
       var runQuery = function (){
         var segmentationPromises = [];
-        
         var segmentationInitialPromise = new Promise(function (resolve, reject){
           var segmentData = runSegmentationQuery().done(function(results){
             resolve(results);
           })
         });
-      
-        
         segmentationPromises.push(segmentationInitialPromise);
         console.log(segmentationInitialPromise);
         Promise.all(segmentationPromises).then(function(segmentationData){
