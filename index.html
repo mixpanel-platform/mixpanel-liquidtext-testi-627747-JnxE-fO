@@ -79,7 +79,7 @@
               sortedFinalData[maxUser] = chartData[maxUser];
               delete chartData[maxUser];
             }
-            sortedPromise.push(sortedDataPromise);
+            sortedPromise.push(sortedDataPromise)
           })
           
           Promise.all(sortedPromise)(function(sortedData){
