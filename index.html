@@ -75,9 +75,9 @@
               delete chartData[maxUser];
             }
             console.log(sortedFinalData);
-          }
-          resolve(sortedFinalData);
-          )
+            resolve(sortedFinalData);
+          })
+          
           sortedDataPromise.then(function(sortedData){
             console.log(sortedData);
           })
