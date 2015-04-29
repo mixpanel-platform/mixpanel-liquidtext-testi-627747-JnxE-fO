@@ -70,7 +70,7 @@
           console.log(chartData);
           var sortedFinalData = [];
           var sortedPromise = [];
-          var sortedDataPromise = new Promise(function (resolve, reject){
+          var sortedDataPromise = new Promise(function(){
             var length = Object.keys(chartData).length;
             for (var i = 0; i < length; i++){
               var maxAmount = _.max(chartData);
@@ -80,7 +80,7 @@
               delete chartData[maxUser];
             }
             
-          });
+          })
           sortedPromise.push(sortedDataPromise);
           Promise.all(sortedPromise).then(function(sortedData){
             console.log(sortedData);
