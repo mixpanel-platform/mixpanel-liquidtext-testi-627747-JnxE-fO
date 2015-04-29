@@ -85,8 +85,8 @@
           sortedPromise.push(sortedDataPromise);
           Promise.all(sortedPromise).then(function(sortedData){
             console.log(sortedData);
-            console.log(sortedData[0][0]);
-            barchart.MPChart('setData', sortedData[0]);
+            console.log(sortedData[0]);
+            barchart.MPChart('setData', sortedData[0]["Unknown 2AECFCF5-8EAF-4F34-84ED-8DF011ABACBE"]);
           })
           
       	})
