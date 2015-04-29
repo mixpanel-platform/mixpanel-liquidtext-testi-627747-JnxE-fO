@@ -82,7 +82,7 @@
             resolve(sortedFinalData);
           })
           
-          sortedDataPromise.then(function(sortedData){
+          Promise.all(sortedFinalData)(function(sortedData){
             barchart.MPChart('setData', sortedData);
           })
           
