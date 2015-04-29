@@ -28,18 +28,19 @@
         });
         
       var runQuery = function (){
-        var segmentationPromises = [];
-        var segmentationInitialPromise = new Promise(function (resolve, reject){
-          var segmentData = runSegmentationQuery().done(function(results){
-            resolve(results);
-          })
+        runSegmentationQuery();
+        //var segmentationPromises = [];
+        //var segmentationInitialPromise = new Promise(function (resolve, reject){
+          //var segmentData = runSegmentationQuery().done(function(results){
+            //resolve(results);
+          //})
             
-        });
-        segmentationPromises.push(segmentationInitialPromise);
-        console.log(segmentationInitialPromise);
-        Promise.all(segmentationPromises).then(function(segmentationData){
-          var totalData = aggregateSegmentationData(segmentationData);
-          console.log(segmentationData);
+        //});
+        // segmentationPromises.push(segmentationInitialPromise);
+        // console.log(segmentationInitialPromise);
+        // Promise.all(segmentationPromises).then(function(segmentationData){
+        //   var totalData = aggregateSegmentationData(segmentationData);
+        //   console.log(segmentationData);
         });
         
       }
