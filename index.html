@@ -41,7 +41,7 @@
         var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
           console.log(segmentationData);
           return segmentationData;
-        })
+        });
       }
   
       var aggregateSegmentationData = function (segmentationResults){
