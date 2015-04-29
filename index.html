@@ -69,6 +69,7 @@
       		
           console.log(chartData);
           var sortedFinalData = [];
+          var sortedPromise = [];
           var sortedDataPromise = new Promise(function (resolve, reject){
             var length = Object.keys(chartData).length;
             for (var i = 0; i < length; i++){
@@ -78,11 +79,10 @@
               sortedFinalData[maxUser] = chartData[maxUser];
               delete chartData[maxUser];
             }
-            console.log(sortedFinalData);
-            resolve(sortedFinalData);
+            sortedPromise.push(sortedDataPromise);
           })
           
-          Promise.all(sortedFinalData)(function(sortedData){
+          Promise.all(sortedPromise)(function(sortedData){
             barchart.MPChart('setData', sortedData);
           })
           
