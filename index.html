@@ -64,6 +64,15 @@
       		}
       		
           console.log(chartData);
+          var sortedFinalData = {};
+          var length = Object.keys(chartData).length;
+          for (var i = 0; i > length; i++){
+             var max_user = chartData[_.max(chartData)]
+             console.log(max_user);
+             sortedFinalData[max_user] = chartData[max_user];
+             delete chartData[max_user];
+           }
+      		console.log(sortedFinalData);
 
       	})
       })
