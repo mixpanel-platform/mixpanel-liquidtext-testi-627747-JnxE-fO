@@ -17,14 +17,15 @@
         var segmentationInitialPromise = [];
         var segmentationSortedPromise = [];
         segmentationInitialPromise.push(runSegmentationQuery());
-        Promise.all(segmentationInitialPromise).then(function(promiseArray){
-          console.log(promiseArray);
+        Promise.all(segmentationInitialPromise).then(function(segmentationInitialPromise){
+          console.log(segmentationInitialPromise);
         //   segmentationSortedPromise.push(sortedFinalEventData(promiseArray));
           
         // });
       
         
       })
+      // .then(function())
     }
           
           
