@@ -10,6 +10,18 @@
      <div id = "datePicker"></div>
      <div id="eventSelect"></div>
     <script>
+      var runSegmentationQuery = function (){
+        var eventName = eventSelect.MPEventSelect('value');
+        var property = "UserID";
+        var dateRange = dateSelector.MPDatepicker('value');
+        var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
+          console.log(segmentationData);
+          return segmentationData;
+        })
+           
+      }
+        
+     
       var dateSelector = $('#datePicker').MPDatepicker();
       var eventSelect = $('#eventSelect').MPEventSelect();
         
@@ -52,17 +64,7 @@
           runQuery();
         });
         
-        var runSegmentationQuery = function (){
-          var eventName = eventSelect.MPEventSelect('value');
-          var property = "UserID";
-          var dateRange = dateSelector.MPDatepicker('value');
-          var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-            console.log(segmentationData);
-            return segmentationData;
-          })
-           
-        }
-        
+      
         
         var aggregateSegmentationData = function (segmentationResults){
           var finalEventData = {};
