@@ -41,8 +41,9 @@
           var dateRange = dateSelector.MPDatepicker('value');
           var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
             var totalData = aggregateSegmentationData(results.values());
+            return totalData; 
           })
-          return totalData;  
+           
         }
         
         
