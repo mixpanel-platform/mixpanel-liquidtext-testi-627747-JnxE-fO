@@ -1,78 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
-    <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
-  </head>
-  <body class="mixpanel-platform-body">
-     <div id = "datePicker"></div>
-     <div id="eventSelect"></div>
-    <script>
-    
-     var runSegmentationQuery = function (){
-        var eventName = eventSelect.MPEventSelect('value');
-        var property = "UserID";
-        var dateRange = dateSelector.MPDatepicker('value');
-        var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-          var totalEventData = aggregateSegmentationData(results.values());
-          console.log(totalEventData);
-          return totalEventData;
-        });
-      }
-    
-      var dateSelector = $('#datePicker').MPDatepicker();
-      var eventSelect = $('#eventSelect').MPEventSelect();
-      eventSelect.on('change', function(e) {
-          runQuery();
-        });
-        
-      var runQuery = function (){
-        runSegmentationQuery();
-        //var segmentationPromises = [];
-        //var segmentationInitialPromise = new Promise(function (resolve, reject){
-          //var segmentData = runSegmentationQuery().done(function(results){
-            //resolve(results);
-          //})
-            
-        //});
-        // segmentationPromises.push(segmentationInitialPromise);
-        // console.log(segmentationInitialPromise);
-        // Promise.all(segmentationPromises).then(function(segmentationData){
-        //   var totalData = aggregateSegmentationData(segmentationData);
-        //   console.log(segmentationData);
-        // });
-        
-      }
-      
-     
-  
-      var aggregateSegmentationData = function (segmentationResults){
-        var finalEventData = {};
-        var length = Object.keys(segmentationResults).length;
-        for (var userID in segmentationResults){
-          finalEventData[userID] = 0;
-          for (var date in segmentationResults[userID]){
-            finalEventData[userID] += segmentationResults[userID][date];
-          }
-            
-        }
+	<head>
+		<link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.css">
+		<script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
+		<title>Mixpanel Platform</title>
+	</head>
+	<body class="mixpanel-platform-body">
 
-      }
-        
-        // var sortFinalEventData = function (finalEventData){
-        //   var sortedFinalData = {};
-        //   var length = Object.keys(finalEventData).length;
-        //   for (var i = 0; i > length; i++){
-        //     var max_user = finalEventData[_.max(finalEventData)]
-        //     console.log(max_user);
-        //     sortedFinalData[max_user] = finalEventData[max_user];
-        //     delete finalEventData[max_user];
-        //   }
-        //   console.log(sortedFinalData);
-          
-        // }
-    </script>
-  </body>
+		<h1><font size="18">LiquidText!</font></h1>
+
+		<div id="datePicker"></div>
+		<br><br>
+		<div id="eventSelect"></div>
+
+		<script>
+
+		MP.api.setCredentials("5d1f709fdb632188671c5497e18fc5f9", "3fc000e5c15892b0d67fe459c314e55e")
+		var dateSelector = $('#datePicker').MPDatepicker();
+      	var eventSelect = $('#eventSelect').MPEventSelect();
+
+      	var segObject
+      	var chartData = {}
+
+      	var segProperty = "UserID";
+      	var dateRange = dateSelector.MPDatepicker('value')
+      	var eventName = "app.app-launch"
+
+      	var getSegData = new Promise(function(resolve, reject) {
+      		MP.api.segment(eventName, segProperty, dateRange).done(function(segData) {
+      			resolve(segData)
+      		})
+      	})
+
+    getSegData.then(function(segData) {
+      segObject = segData.sum().values()
+
+			var peoplePromises = []      		
+
+      		for (var user in segObject) {
+
+      			var whereParam = '("'+user+'" in properties["$first_name"])'
+      			// console.log(whereParam)
+
+      			var peoplePromise = new Promise(function(resolve, reject) {
+      				MP.api.people({where: whereParam}).done(function(userProfile) {
+      					resolve(userProfile)
+      				})
+      			})
+
+      			peoplePromises.push(peoplePromise)
+      			
+      		}
+
+      		// console.log(peoplePromises)
+
+      	Promise.all(peoplePromises).then(function(peopleData) {
+
+      		for (var user in peopleData) {
+      			var firstName = peopleData[user].values().results[0]["$properties"]["$first_name"]
+      			var distinctId = peopleData[user].values().results[0]["$distinct_id"]
+      			
+      			chartData[firstName] = segObject[distinctId]
+
+      		}
+          var sortedFinalData = {};
+          var length = Object.keys(chartData).length;
+          for (var i = 0; i > length; i++){
+             var max_user = chartData[_.max(chartData)]
+             sortedFinalData[max_user] = chartData[max_user];
+             delete chartData[max_user];
+           }
+      		console.log(sortedFinalData);
+
+      	})
+      })
+
+
+		</script>
+	</body>
 </html>
