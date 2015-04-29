@@ -79,9 +79,9 @@
               sortedFinalData[maxUser] = chartData[maxUser];
               delete chartData[maxUser];
             }
-            sortedPromise.push(sortedDataPromise);
+            
           });
-          
+          sortedPromise.push(sortedDataPromise);
           Promise.all(sortedPromise).then(function(sortedData){
             console.log(sortedData);
             //barchart.MPChart('setData', sortedData);
