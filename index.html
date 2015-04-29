@@ -14,7 +14,15 @@
       var eventSelect = $('#eventSelect').MPEventSelect();
         
       var runQuery = function (){
-        var segmentationData = runSegmentationQuery();
+        var segmentationPromise = [];
+        var segmentationSortedPromise = [];
+        segmentationPromise.push(runSegmentationQuery());
+        Promise.all(segmentationPromise).then(function(promiseArray){
+          segmentationSortedPromise.push(sortedFinalEventData(promiseArray));
+          
+        });
+      
+        
       };
           
           
@@ -32,11 +40,11 @@
           var property = "UserID";
           var dateRange = dateSelector.MPDatepicker('value');
           var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-            var totalData = aggregateSegmentationData(results.values()).done(function (eventData){
-                var sortedData = sortFinalEventData(eventData);
-            })
+            var totalData = aggregateSegmentationData(results.values());
           })
+          return totalData;  
         }
+        
         
         var aggregateSegmentationData = function (segmentationResults){
           var finalEventData = {};
@@ -62,6 +70,7 @@
             sortedFinalData[max_user] = finalEventData[max_user];
             delete finalEventData[max_user];
           }
+          console.log(sortedFinalData);
           
         }
     </script>
