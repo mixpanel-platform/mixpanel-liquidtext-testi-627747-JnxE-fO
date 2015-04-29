@@ -10,18 +10,12 @@
      <div id = "datePicker"></div>
      <div id="eventSelect"></div>
     <script>
-      var runSegmentationQuery = function (){
-        var eventName = eventSelect.MPEventSelect('value');
-        var property = "UserID";
-        var dateRange = dateSelector.MPDatepicker('value');
-        var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
-          console.log(segmentationData);
-        })
-      }
-        
-     
+    
       var dateSelector = $('#datePicker').MPDatepicker();
       var eventSelect = $('#eventSelect').MPEventSelect();
+      eventSelect.on('change', function(e) {
+          runQuery();
+        });
         
       var runQuery = function (){
         var segmentationPromises = [];
@@ -35,44 +29,32 @@
         Promise.all(segmentationPromises).then(function(segmentationData){
           var totalData = aggregateSegmentationData(segmentationData);
           console.log(segmentationData);
-        })
-        
-        //segmentationInitialPromise.push(runSegmentationQuery());
-        //Promise.all(segmentationInitialPromise).then(function(promiseArray){
-          //console.log(promiseArray);
-        //   segmentationSortedPromise.push(sortedFinalEventData(promiseArray));
-          
-        // });
-      
-        
-      }
-      // .then(function())
-    
-          
-          
-
-      
-        
-
-      
-        eventSelect.on('change', function(e) {
-          runQuery();
         });
         
+      }
       
-        
-        var aggregateSegmentationData = function (segmentationResults){
-          var finalEventData = {};
-          var length = Object.keys(segmentationResults).length;
-          for (var userID in segmentationResults){
-            finalEventData[userID] = 0;
-            for (var date in segmentationResults[userID]){
-              finalEventData[userID] += segmentationResults[userID][date];
-            }
-            
+      var runSegmentationQuery = function (){
+        var eventName = eventSelect.MPEventSelect('value');
+        var property = "UserID";
+        var dateRange = dateSelector.MPDatepicker('value');
+        var segmentationData = MP.api.segment(eventName, property, dateRange).done(function(results){
+          console.log(segmentationData);
+          return segmentationData;
+        })
+      }
+  
+      var aggregateSegmentationData = function (segmentationResults){
+        var finalEventData = {};
+        var length = Object.keys(segmentationResults).length;
+        for (var userID in segmentationResults){
+          finalEventData[userID] = 0;
+          for (var date in segmentationResults[userID]){
+            finalEventData[userID] += segmentationResults[userID][date];
           }
-
+            
         }
+
+      }
         
         // var sortFinalEventData = function (finalEventData){
         //   var sortedFinalData = {};
