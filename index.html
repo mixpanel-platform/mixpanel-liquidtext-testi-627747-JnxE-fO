@@ -47,7 +47,6 @@
       	for (var user in segObject) {
 
       	  var whereParam = '("'+user+'" in properties["$first_name"])'
-      			// console.log(whereParam)
 
       			var peoplePromise = new Promise(function(resolve, reject) {
       				MP.api.people({where: whereParam}).done(function(userProfile) {
@@ -69,7 +68,6 @@
 
       		}
       		
-          console.log(chartData);
           var sortedFinalData = [];
           var sortedPromise = [];
           var sortedDataPromise = new Promise(function(resolve, reject){
@@ -77,7 +75,6 @@
             for (var i = 0; i < length; i++){
               var maxAmount = _.max(chartData);
               var maxUser = _.invert(chartData)[_.max(chartData)]
-              console.log(maxUser);
               sortedFinalData[maxUser] = chartData[maxUser];
               delete chartData[maxUser];
             }
@@ -86,8 +83,6 @@
           
           sortedPromise.push(sortedDataPromise);
           Promise.all(sortedPromise).then(function(sortedData){
-            console.log(sortedData);
-            console.log(sortedData[0]["Unknown 2AECFCF5-8EAF-4F34-84ED-8DF011ABACBE"]);
             var finalArray = {};
             for (var key in sortedData[0]){
               finalArray[key] = sortedData[0][key];
