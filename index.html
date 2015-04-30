@@ -18,11 +18,13 @@
 
 		<script>
 
-		 var barchart = $('#barChart').MPChart({
+		var barchart = $('#barChart').MPChart({
         chartType: 'bar' 
        });
+       
 		var dateSelector = $('#datePicker').MPDatepicker();
     var eventSelect = $('#eventSelect').MPEventSelect();
+    
     eventSelect.on('change', function(e) {
       var segObject
       var chartData = {}
@@ -97,7 +99,7 @@
       })
 
       
-    }
+    })
       
 
 		</script>
