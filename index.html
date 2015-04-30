@@ -24,27 +24,27 @@
 		var dateSelector = $('#datePicker').MPDatepicker();
     var eventSelect = $('#eventSelect').MPEventSelect();
     eventSelect.on('change', function(e) {
-      	var segObject
-      	var chartData = {}
+      var segObject
+      var chartData = {}
 
-      	var segProperty = "UserID";
-      	var dateRange = dateSelector.MPDatepicker('value')
-      	var eventName = eventSelect.MPEventSelect('value')
+      var segProperty = "UserID";
+      var dateRange = dateSelector.MPDatepicker('value')
+      var eventName = eventSelect.MPEventSelect('value')
 
-      	var getSegData = new Promise(function(resolve, reject) {
-      		MP.api.segment(eventName, segProperty, dateRange).done(function(segData) {
-      			resolve(segData)
+      var getSegData = new Promise(function(resolve, reject) {
+      	MP.api.segment(eventName, segProperty, dateRange).done(function(segData) {
+      		resolve(segData)
       		})
       	})
 
-    getSegData.then(function(segData) {
-      segObject = segData.sum().values()
+      getSegData.then(function(segData) {
+        segObject = segData.sum().values()
 
-			var peoplePromises = []      		
+			  var peoplePromises = []      		
 
-      		for (var user in segObject) {
+      	for (var user in segObject) {
 
-      			var whereParam = '("'+user+'" in properties["$first_name"])'
+      	  var whereParam = '("'+user+'" in properties["$first_name"])'
       			// console.log(whereParam)
 
       			var peoplePromise = new Promise(function(resolve, reject) {
